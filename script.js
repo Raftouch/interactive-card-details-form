@@ -91,33 +91,3 @@ confirmBtn.onclick = () => {
 }
 
 // const creditCardRegex
-
-
-
-
-// receiveBtn.onclick = () => {
-//     if (!affirmation.checked && !mantra.checked) {
-//         alert('Please select affirmation or mantra');
-//     }
-//     else if (affirmation.checked) {
-//         for (let i = 0; i < affirmations.length; i++) {
-//             let affirmationsCount = Math.floor(Math.random() * affirmations.length)
-//             divMsg.innerHTML = affirmations[affirmationsCount];
-//             divImg.style.display="none";
-//             clearBtn.style.display="block";
-//         }
-//     } else { 
-//         for (let i = 0; i < mantras.length; i++) {
-//             let mantrasCount = Math.floor(Math.random() * mantras.length)
-//             divMsg.innerHTML = mantras[mantrasCount];
-//             divImg.style.display="none";
-//             clearBtn.style.display="block";
-//         }
-//     }
-// }
-
-// clearBtn.onclick = () => {
-//     divImg.style.display = "block"
-//     divMsg.innerHTML = null;
-//     clearBtn.style.display = "none"
-//   }
