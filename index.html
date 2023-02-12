@@ -12,7 +12,6 @@
 <body>
 
 <div class="div-main">
-
   <div class="div-images">
     <div class="div-card-front">
       <img src="images/card-logo.svg" alt="card-logo">
@@ -40,26 +39,26 @@
         <tr>
           <td colspan="4">
             <label for="cardholder-name">Cardholder Name</label>
-            <input id="cardholder-name" data-input="text" placeholder="e.g. Jane Appleseed">
+            <input id="cardholder-name" data-input="text" placeholder="e.g. Jane Appleseed" required>
             <p class="error-msg" id="error-cardholder-name"></p>
           </td>
         </tr>
         <tr>
           <td colspan="4">
             <label for="card-number">Card Number</label>
-            <input id="card-number" data-input="number" placeholder="e.g. 1234 5678 9123 0000">
+            <input id="card-number" data-input="number" placeholder="e.g. 1234 5678 9123 0000" required>
             <p class="error-msg" id="error-card-number"></p>
           </td>
         </tr>
         <tr>
           <td colspan="2">
             <label for="exp-date-mm">Exp. Date (MM/YY)</label>
-            <input id="exp-date-mm" data-input="month" placeholder="MM"> <input id="exp-date-yy" data-input="year" placeholder="YY">
+            <input id="exp-date-mm" data-input="month" placeholder="MM" required> <input id="exp-date-yy" data-input="year" placeholder="YY" required>
             <p class="error-msg" id="error-mm-yy"></p>
           </td>
           <td colspan="2">
             <label for="cvc">CVC</label>
-            <input id="cvc" data-input="number" placeholder="e.g. 123">
+            <input id="cvc" data-input="number" placeholder="e.g. 123" required>
             <p class="error-msg" id="error-cvc"></p>
           </td>
         </tr>
@@ -78,14 +77,14 @@
       <button>Continue</button>
     </div>
   </div>
-
 </div>
 
-  <div class="attribution">
-    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-    Coded by <a href="#">Nelli</a>.
-  </div>
+<div class="attribution">
+  Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+  Coded by <a href="#">Nelli</a>.
+</div>
 
 <script src="script.js"></script>
+
 </body>
 </html>

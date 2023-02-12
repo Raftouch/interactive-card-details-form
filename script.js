@@ -1,93 +1,80 @@
-const cardholderName = document.getElementById("cardholder-name")
-const cardNumber = document.getElementById("card-number")
-const expDateMm = document.getElementById("exp-date-mm")
-const expDateYy = document.getElementById("exp-date-yy")
-const cvc = document.getElementById("cvc" )
+const cardholderNameInput = document.getElementById("cardholder-name")
+const cardNumberInput = document.getElementById("card-number")
+const cardExpDateMmInput = document.getElementById("exp-date-mm")
+const cardExpDateYyInput = document.getElementById("exp-date-yy")
+const cardCvcInput = document.getElementById("cvc" )
 const confirmBtn = document.getElementById("button")
 
+const error = document.getElementsByClassName('error-msg')
 const errorCardholderName = document.getElementById("error-cardholder-name")
 const errorCardNumber = document.getElementById("error-card-number")
 const errorMmYy = document.getElementById("error-mm-yy")
 const errorCvc = document.getElementById("error-cvc")
 
+const cardholderName = document.getElementById('name')
+const cardNumber = document.getElementById('four-zeros')
+const cardExpDateMm = document.getElementById('mm')
+const cardExpDateYy = document.getElementById('yy')
+const cardCvc = document.getElementById('div-card-back-cvc')
+
+const formCompleted = document.getElementById("div-card-details")
+const thankYou = document.getElementById("div-thank-you-hidden")
 
 
-
-
-// function myFunction() {
-//     var str = document.getElementById("demo").innerHTML; 
-//     str = str.replace("apple", "grape");
-//     str = str.replace("contents of box a", "contents of box b");
-//     document.getElementById("demo").innerHTML = str;
-//     }
-
-
-
-confirmBtn.onclick = () => {
-
-    // addEventListener --> target.value
-
-    let str = document.getElementById("name").innerHTML
-    str = str.replace("Jane Appleseed", cardholderName.value)
-    document.getElementById("name").innerHTML = str
-
-    let num = document.getElementById("four-zeros").innerHTML
-    num = num.replace("0000 0000 0000 0000", cardNumber.value)
-    document.getElementById("four-zeros").innerHTML = num
-
-    let mm = document.getElementById("mm").innerHTML
-    mm = mm.replace("00", expDateMm.value)
-    document.getElementById("mm").innerHTML = mm
-
-    let yy = document.getElementById("yy").innerHTML
-    yy = yy.replace("00", expDateYy.value)
-    document.getElementById("yy").innerHTML = yy
-
-    let cvcBack = document.getElementById("div-card-back").innerHTML
-    cvcBack = cvcBack.replace("000", cvc.value)
-    document.getElementById("div-card-back").innerHTML = cvcBack
-
-
-    if (cardholderName.value == "") { 
-        errorCardholderName.innerHTML = "Can't be blank"
-    }
-    if (!isNaN(cardholderName.value)) {
-        errorCardholderName.innerHTML = "Wrong format, letters only"
-    }
-    
-    else if (isNaN(cardNumber.value)) {
-        errorCardNumber.innerHTML = "Wrong format, numbers and max, min 16 digits"
-    }
-    
-    else if (expDateMm.value == "" || expDateYy.value == "") {
-        errorMmYy.innerHTML = "Can't be blank"
-    }
-    else if (isNaN(expDateMm.value) || isNaN(expDateYy.value)) {
-        errorMmYy.innerHTML = "Wrong format, numbers only"
-    }
-    else if (cvc.value == "") {
-        errorCvc.innerHTML = "Can't be blank and min 3 digits"
-    }
-    else if (isNaN(cvc.value)) {
-        errorCvc.innerHTML = "Wrong format, numbers only"
-    }
-  
-           
-
-    // if (cardholderName.value == "" || cardNumber.value == "" || expDateMm.value == "" || expDateYy.value == "" || cvc.value == "") {
-    //     alert("Please fill all required fields")
-    // }
-
-   
-    else {
-        // let thankYou = document.getElementById("div-card-details")
-        // let thankYouHidden = document.getElementById("div-thank-you-hidden")
-        // thankYou = thankYou.replace(thankYou, thankYouHidden)
-        // document.getElementById("div-card-details") = thankYou
-
-        document.getElementById("div-card-details").style.display = "none"
-        document.getElementById("div-thank-you-hidden").style.display = "block"
-    }
+function setCardNumber(e) {
+    cardNumber.innerText = format(e.target.value) 
+}
+function format(s) {
+    return s.toString().replace(/^[^0-9]$/)
+}
+function setCardholderName(e) {
+    cardholderName.innerText = e.target.value
+}
+function setCardExpDateMm(e) {
+    cardExpDateMm.innerText = e.target.value
+}
+function setCardExpDateYy(e) {
+    cardExpDateYy.innerText = e.target.value
+}
+function setCardCvc(e) {
+    cardCvc.innerText = e.target.value
 }
 
-// const creditCardRegex
+
+
+cardNumberInput.addEventListener("keyup", setCardNumber)
+cardholderNameInput.addEventListener("keyup", setCardholderName)
+cardExpDateMmInput.addEventListener("keyup", setCardExpDateMm)
+cardExpDateYyInput.addEventListener("keyup", setCardExpDateYy)
+cardCvcInput.addEventListener("keyup", setCardCvc)
+confirmBtn.addEventListener("click", handleSubmit)
+
+
+function handleSubmit(e) {
+    e.preventDefault()
+
+    if (!isNaN(cardholderNameInput.value) || cardholderNameInput.value == null) {
+        errorCardholderName.innerText = "Can't be blank and letters only"
+    } else {
+        errorCardholderName.innerText = ""
+    }
+    if (isNaN(cardNumberInput.value) || cardNumberInput.value.length !== 16 || cardNumberInput.value == null) {
+        errorCardNumber.innerText = "Can't be blank, numbers only and max, min 16 digits"
+    } else { 
+        errorCardNumber.innerText = ""
+    }
+    if (isNaN(cardExpDateMmInput.value) || cardExpDateMmInput.value == null || isNaN(cardExpDateYyInput.value) || cardExpDateYyInput.value == null) {
+        errorMmYy.innerText = "Can't be blank and numbers only"
+    } else {
+        errorMmYy.innerText = ""
+    }
+    if (cardCvcInput.value == null || cardCvcInput.value.length < 3 || isNaN(cardCvcInput.value)) {
+        errorCvc.innerText = "Can't be blank, numbers only and min 3 digits"
+    } else {
+        errorCvc.innerText = ""
+    }
+    if (cardholderNameInput.value && cardNumberInput.value && cardExpDateMmInput.value && cardExpDateYyInput.value && cardCvcInput.value) {
+            formCompleted.style.display = "none"
+            thankYou.style.display = "block"
+    }
+}
