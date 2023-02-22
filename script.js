@@ -25,7 +25,7 @@ function setCardNumber(e) {
     cardNumber.innerText = format(e.target.value) 
 }
 function format(s) {
-    return s.toString().replace(/^[^0-9]$/)
+    return s.toString().replace(/([0-9]{4})/g, '$1 ')
 }
 function setCardholderName(e) {
     cardholderName.innerText = e.target.value
